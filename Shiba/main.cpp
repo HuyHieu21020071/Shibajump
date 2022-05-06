@@ -31,6 +31,7 @@ int main()
 //
     Font font;
     font.loadFromFile("font/arial.ttf");
+
     Text ScoreText;
     ScoreText.setFont(font);
     ScoreText.setCharacterSize(30);
@@ -40,11 +41,12 @@ int main()
     Restart.setFont(font);
     Restart.setCharacterSize(30);
     Restart.setFillColor(Color::Black);
-    Restart.setString("Press to restart!");
-    Restart.setPosition(100,480);
+    Restart.setString("Press F to restart!");
+    Restart.setPosition(80,480);
 
     SoundBuffer buffer;
     buffer.loadFromFile("sound/jump.wav");
+
     Sound jump;
     jump.setBuffer(buffer);
 
@@ -59,7 +61,7 @@ int main()
     bool Game = true;
     for (int i=0;i<10;i++)
       {
-       plat[i].x=rand()%400;
+       plat[i].x=rand()%350;
        plat[i].y=rand()%533;
       }
     plat[0].y=400;
@@ -75,8 +77,25 @@ int main()
             if (e.type == Event::Closed)
                 app.close();
         }
-    if (Game==false) continue;
-     if (Keyboard::isKeyPressed(Keyboard::Right)) {
+    if (Game==false)
+    {
+        if(Keyboard::isKeyPressed(Keyboard::F))
+        {
+            Game=true;
+            first=true;
+            for(int i=0;i<10;i++)
+            {
+                plat[i].x=rand()%350;
+                plat[i].y=rand()%533;
+            }
+            plat[0].y=400;
+            plat[0].x=100;
+            x=100,y=300,h=200;
+            dy=0;
+        }
+        continue;
+    }
+    if (Keyboard::isKeyPressed(Keyboard::Right)) {
             isRight = true;
             x+=3;
     }
@@ -113,7 +132,10 @@ int main()
     {
       y=h;
       plat[i].y=plat[i].y-dy;
-      if (plat[i].y>533) {plat[i].y=0; plat[i].x=rand()%400;}
+      if (plat[i].y>533) {
+            plat[i].y=0;
+            plat[i].x=rand()%350;
+            }
     }
 
     for (int i=0;i<10;i++)
@@ -143,6 +165,5 @@ int main()
     app.draw(ScoreText);
     app.display();
 }
-
     return 0;
 }

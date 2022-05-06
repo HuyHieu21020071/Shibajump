@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1651806244 source:c:\users\admin\desktop\game\shibajump\shiba\main.cpp
+1651809078 source:c:\users\admin\desktop\game\shibajump\shiba\main.cpp
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 	<time.h>
