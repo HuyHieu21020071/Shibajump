@@ -1,8 +1,14 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include <time.h>
+#include <windows.h>
 using namespace sf;
-
+/*
+	*      ----Size of images----
+	*    background.png size: 400 * 533
+	*    doodle.png     size:  80 *  80
+	*    platform.png   size:  68 *  14
+*/
 
 struct point
 { int x,y;};
@@ -10,47 +16,55 @@ struct point
 int main()
 {
     srand(time(0));
-
-    RenderWindow app(VideoMode(400, 533), "Doodle Game!");
+    RenderWindow app(VideoMode(400, 533), "Bonk Game!");
     app.setFramerateLimit(60);
 
-
-/*
-	*      ----Size of images----
-	*    background.png size: 400 * 533
-	*    doodle.png     size:  80 *  80
-	*    platform.png   size:  68 *  14
-*/
-    Texture t1,t2,t3_1,t3_2,t4;
+    Texture t1,t2,t3_1,t3_2,t4,t5;
     t1.loadFromFile("images/background2.jpg");
     t2.loadFromFile("images/platform.png");
     t3_1.loadFromFile("images/dog2_left.png");
     t3_2.loadFromFile("images/dog2_right.png");
-    t4.loadFromFile("images/GameOver1.png");
+    t4.loadFromFile("images/GameOver_fix.png");
+    t5.loadFromFile("images/bonk_img_resize.jpg");
 
-    Sprite sBackground(t1), sPlat(t2), sPers_left(t3_1), sPers_right(t3_2), sGameOver(t4);
+    Sprite sBackground(t1), sPlat(t2), sPers_left(t3_1), sPers_right(t3_2), sGameOver(t4), sBonk(t5);
 //
     Font font;
     font.loadFromFile("font/arial.ttf");
     Text ScoreText;
     ScoreText.setFont(font);
-    ScoreText.setCharacterSize(40);
+    ScoreText.setCharacterSize(30);
     ScoreText.setFillColor(Color::Black);
-    int Score;
 
-    point plat[20];
+    Text Restart;
+    Restart.setFont(font);
+    Restart.setCharacterSize(30);
+    Restart.setFillColor(Color::Black);
+    Restart.setString("Press to restart!");
+    Restart.setPosition(100,480);
+
     SoundBuffer buffer;
     buffer.loadFromFile("sound/jump.wav");
-    Sound sound;
-    sound.setBuffer(buffer);
+    Sound jump;
+    jump.setBuffer(buffer);
+
+    SoundBuffer buffer_1;
+    buffer_1.loadFromFile("sound/bonk.wav");
+    Sound bonk;
+    bonk.setBuffer(buffer_1);
+
+    int Score;
+    bool first = true;
+    point plat[20];
     bool Game = true;
     for (int i=0;i<10;i++)
       {
        plat[i].x=rand()%400;
        plat[i].y=rand()%533;
       }
-
-    int x=100,y=100,h=200;
+    plat[0].y=400;
+    plat[0].x=100;
+    int x=100,y=300,h=200;
     float dy=0;
     bool isRight = true;
     while (app.isOpen())
@@ -61,8 +75,8 @@ int main()
             if (e.type == Event::Closed)
                 app.close();
         }
-    if(Game==false) continue;
-    if (Keyboard::isKeyPressed(Keyboard::Right)) {
+    if (Game==false) continue;
+     if (Keyboard::isKeyPressed(Keyboard::Right)) {
             isRight = true;
             x+=3;
     }
@@ -84,7 +98,12 @@ int main()
     if (y>500)
     {
         Game = false ;
+        app.clear(Color::White);
+        bonk.play();
         app.draw(sGameOver);
+        sBonk.setPosition(0,200);
+        app.draw(sBonk);
+        app.draw(Restart);
         app.display();
         continue;
     }
@@ -101,7 +120,7 @@ int main()
      if ((x+50>plat[i].x) && (x+20<plat[i].x+68)
       && (y+70>plat[i].y) && (y+70<plat[i].y+14) && (dy>0)) {
           dy=-10;
-          sound.play();
+          jump.play();
       }
 
     app.clear(Color::Black);
@@ -116,13 +135,12 @@ int main()
         sPers_left.setPosition(x,y);
         app.draw(sPers_left);
     }
-    app.draw(ScoreText);
     for (int i=0;i<10;i++)
     {
     sPlat.setPosition(plat[i].x,plat[i].y);
     app.draw(sPlat);
     }
-
+    app.draw(ScoreText);
     app.display();
 }
 

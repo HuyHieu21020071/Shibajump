@@ -1,8 +1,9 @@
 # depslib dependency file v1.0
-1651648679 source:c:\users\admin\desktop\game\shibajump\shiba\main.cpp
+1651806244 source:c:\users\admin\desktop\game\shibajump\shiba\main.cpp
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 	<time.h>
+	<windows.h>
 
 1525812018 c:\users\admin\desktop\game\shibajump\shiba\include\sfml\graphics.hpp
 	<SFML/Window.hpp>
