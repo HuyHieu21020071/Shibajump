@@ -34,8 +34,14 @@ int main()
 
     Text ScoreText;
     ScoreText.setFont(font);
-    ScoreText.setCharacterSize(30);
-    ScoreText.setFillColor(Color::Black);
+    ScoreText.setCharacterSize(20);
+    ScoreText.setFillColor(Color::Red);
+
+    Text Highest_ScoreText;
+    Highest_ScoreText.setFont(font);
+    Highest_ScoreText.setCharacterSize(20);
+    Highest_ScoreText.setFillColor(Color::Red);
+    Highest_ScoreText.setPosition (200,0);
 
     Text Restart;
     Restart.setFont(font);
@@ -55,7 +61,7 @@ int main()
     Sound bonk;
     bonk.setBuffer(buffer_1);
 
-    int Score;
+    int Score=0,Highest_Score=0;
     bool first = true;
     point plat[20];
     bool Game = true;
@@ -92,6 +98,7 @@ int main()
             plat[0].x=100;
             x=100,y=300,h=200;
             dy=0;
+            Score=0;
         }
         continue;
     }
@@ -111,6 +118,11 @@ int main()
     {
         Score++;
         ScoreText.setString("Score: " + std::to_string(Score));
+        if(Score>Highest_Score)
+        {
+            Highest_Score=Score;
+            Highest_ScoreText.setString("Highest Score: " + std::to_string(Highest_Score));
+        }
     }
     dy+=0.2;
     y+=dy;
@@ -163,6 +175,7 @@ int main()
     app.draw(sPlat);
     }
     app.draw(ScoreText);
+    app.draw(Highest_ScoreText);
     app.display();
 }
     return 0;
