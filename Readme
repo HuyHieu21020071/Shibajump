@@ -1,1 +1,13 @@
-Hello github
+Em xin nhận 9.25 cho bài tập lớn của mình ạ.
+Em học code game engine từ video: https://www.youtube.com/watch?v=7Vf_vQIUk5Q&list=PLB_ibvUSN7mzUffhiay5g5GUHyJRO4DYr&index=2
+Ngoài ra đọc thêm các tài liệu về sfml trên trang chủ của sfml.
+Mô tả: Game yêu cầu người chơi điều chỉnh chú chó sao cho nó nhảy trên các platform được cao nhất.
+Update so với bản trên video:
+  Thêm hoạt ảnh quay trái quay phải cho nhân vật.
+  Thêm chức năng dịch chuyển từ phải sang trái khi đi sang mép bên phải và ngược lại.
+  Thêm các mức độ từ dễ đến khó. 
+  Thêm chức năng bị thua khi để nhân vật chạm mặt dưới của cửa sổ.
+  Thêm chức năng tính điểm và ghi lại điểm cao nhất.
+  Thêm màn hình menu cho game.
+  Thêm chức năng chơi lại từ đầu.
+  Căn chỉnh sao cho các platform vừa vào với cửa sổ game.
