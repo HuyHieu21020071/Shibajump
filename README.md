@@ -11,5 +11,5 @@ Nhân vật và platform sẽ chứa một tọa độ và một gia tốc. Ban 
 Khi nhân vật rơi xuống khỏi màn hình của game, bạn sẽ bị thua. Chương trình sẽ hiển thị màn hình thua và hai tùy chọn là quay trở về màn hình chính hay chơi lại game.
 Game cũng chia ra thành các cấp độ. Cứ mỗi 1000 điểm, game sẽ tăng một cấp đọ. Mỗi cấp độ, số lượng platform sẽ ít đi khiến cho bạn phải di chuyển nhân vật cẩn thận hơn nếu không sẽ bị rơi.
 ## Đánh giá
-# Em (Mình) xin tự đánh giá 9.25 điểm. #
+### Em (Mình) xin tự đánh giá 9.25 điểm. ###
 Em code lại game và bổ sung thêm nhiều tính năng dự trên hướng dẫn [Youtube](https://www.youtube.com/watch?v=7Vf_vQIUk5Q&list=PLB_ibvUSN7mzUffhiay5g5GUHyJRO4DYr&index=2) và đọc thêm các tài liệu của SFML trên trang chủ SFML. Mọi âm thanh, hình ảnh em đều tham khảo từ các nguồn trên mạng và design background bằng Canva.
